@@ -3092,27 +3092,28 @@ class PixmapCache (object):
     for path in icon_paths:
       path = path or '.';
       # for each entry, try <entry>/icons/<appname>'
-      trydir = os.path.join(path,'icons',self._appname);
-      _dprint(3,'trying icon path',trydir);
-      try: files = os.listdir(trydir);
-      except: continue;
-      _dprint(3,len(files),'entries in',trydir);
-      # loop over all files
-      nicons = 0;
-      for f in files:
-        (name,ext) = os.path.splitext(f);     # check extension
-        if ext in ('.png','.xpm','.gif'):
-          f = os.path.join(trydir,f);
-          try: pm = QPixmap(f);
-          except: 
-            _dprint(3,'error loading icon',name,sys.exc_value());
-            continue;
-          # register pixmap 
-          self._pixmaps[name] = QPixmapWrapper(pm);
-          nicons += 1;
-          _dprint(4,'loaded icon',f);
-        else:
-          _dprint(4,'ignoring entry',f);
-      _dprint(1,nicons,'icons loaded from ',trydir);
-      self._loaded = True;
+      for a,b in [('icons',self._appname), (self._appname, 'icons')]:
+        trydir = os.path.join(path, a, b);
+        _dprint(3,'trying icon path',trydir);
+        try: files = os.listdir(trydir);
+        except: continue;
+        _dprint(3,len(files),'entries in',trydir);
+        # loop over all files
+        nicons = 0;
+        for f in files:
+          (name,ext) = os.path.splitext(f);     # check extension
+          if ext in ('.png','.xpm','.gif'):
+            f = os.path.join(trydir,f);
+            try: pm = QPixmap(f);
+            except: 
+              _dprint(3,'error loading icon',name,sys.exc_value());
+              continue;
+            # register pixmap 
+            self._pixmaps[name] = QPixmapWrapper(pm);
+            nicons += 1;
+            _dprint(4,'loaded icon',f);
+          else:
+            _dprint(4,'ignoring entry',f);
+        _dprint(1,nicons,'icons loaded from ',trydir);
+        self._loaded = True;
 
