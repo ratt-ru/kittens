@@ -3014,8 +3014,11 @@ import os.path
 
 __icons_loaded = False;
 
-def load_icons (appname):
-  """load all icons found in path, subdirs 'icons/appname'""";
+def load_icons (appname, package=""):
+  """
+  load all icons found in path, subdirs '<package>/icons/<appname>'.
+  Package is optional.
+  """;
   # loop over system path
   global __icons_loaded;
   if __icons_loaded:
@@ -3024,7 +3027,7 @@ def load_icons (appname):
   for path in icon_paths:
     path = path or '.';
     # for each entry, try <entry>/icons/<appname>'
-    trydir = os.path.join(path,'icons',appname);
+    trydir = os.path.join(path,package,'icons',appname);
     _dprint(3,'trying icon path',trydir);
     try: files = os.listdir(trydir);
     except: continue;
