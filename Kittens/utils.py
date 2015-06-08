@@ -32,6 +32,7 @@ import sys
 import string
 import types
 import traceback
+import os
 import os.path
 import time
 
@@ -119,6 +120,47 @@ def nonportable_extract_stack (f=None,limit=None):
   return tb;
 
 
+_proc_status = '/proc/%d/status' % os.getpid()
+
+_scale = {'kB': 1024.0, 'mB': 1024.0*1024.0,
+          'KB': 1024.0, 'MB': 1024.0*1024.0}
+
+def _VmB(VmKey):
+    '''Private.
+    '''
+    global _proc_status, _scale
+     # get pseudo file  /proc/<pid>/status
+    try:
+        t = open(_proc_status)
+        v = t.read()
+        t.close()
+    except:
+        return 0.0  # non-Linux?
+     # get VmKey line e.g. 'VmRSS:  9999  kB\n ...'
+    i = v.index(VmKey)
+    v = v[i:].split(None, 3)  # whitespace
+    if len(v) < 3:
+        return 0.0  # invalid format?
+     # convert Vm value to bytes
+    return float(v[1]) * _scale[v[2]]
+
+
+def _memory(since=0.0):
+    '''Return memory usage in bytes.
+    '''
+    return _VmB('VmSize:') - since
+
+
+def _resident(since=0.0):
+    '''Return resident memory usage in bytes.
+    '''
+    return _VmB('VmRSS:') - since
+
+
+def _stacksize(since=0.0):
+    '''Return stack size in bytes.
+    '''
+    return _VmB('VmStk:') - since
 #
 # === class verbosity ===
 # Verbosity includes methods for verbosity levels and conditional printing
@@ -131,17 +173,27 @@ class verbosity:
   _timestamps = False;
   _timestamps_modulo = 0;
 
+  _memstamps = True
+
   @staticmethod
   def enable_timestamps (enable=True,modulo=60):
     verbosity._timestamps = enable;
     verbosity._timestamps_modulo = modulo;
 
   @staticmethod
+  def enable_memstamps (enable=True,modulo=60):
+    verbosity._memstamps = enable
+
+  @staticmethod
   def timestamp ():
     if verbosity._timestamps:
-      return "%5.2f "%((time.time()-_time0)%verbosity._timestamps_modulo);
+      hdr = "%5.2f "%((time.time()-_time0)%verbosity._timestamps_modulo)
     else:
-      return "";
+      hdr = ""
+    if verbosity._memstamps:
+      mem = _memory()
+      hdr += "%.1fGb " % (float(mem)/(1024**3))
+    return hdr
 
   @staticmethod
   def set_verbosity_level (context,level):
