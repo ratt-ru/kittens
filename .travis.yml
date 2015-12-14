@@ -1,0 +1,16 @@
+language: python
+sudo: false
+python:
+- '2.7'
+install:
+- python setup.py install
+script:
+- true
+deploy:
+  provider: pypi
+  user: gijzelaerr
+  password:
+    secure: QFyt2Q4Ha+8yrYFOJEvcp49rdHRhfitmmR9I+jZsyYFpEAetkXr/DgeFMadaOUeS1Hsal1k80poHN61pORJPmqkwnUI2qR1sW18tEYTMpsS6UAJR01tRIFvkT9KPRND4ObZ2UsltJ+WrFoPPT5vfqYpwQxmrp6iL3NLbQZCVhrQ=
+  on:
+    tags: true
+    repo: ska-sa/kittens
