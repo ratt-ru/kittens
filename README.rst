@@ -3,14 +3,14 @@ kittens
 
 Collection of Python utility functions for purr, tigger, meqtrees and others
 
+
 Installation
 ------------
 
-To install run:
+To install run::
 
-```shell
- $ python setup.py install
- ```
+    $ python setup.py install
+
  
 Documentation
 -------------
