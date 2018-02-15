@@ -26,15 +26,15 @@
 #
 
 from PyQt4.Qt import *
-PYSIGNAL = SIGNAL;
+PYSIGNAL = SIGNAL
 
-from utils import verbosity
+from .utils import verbosity
 
 import sys
 
-_dbg = verbosity(0,name='pixmaps');
-_dprint = _dbg.dprint;
-_dprintf = _dbg.dprintf;
+_dbg = verbosity(0,name='pixmaps')
+_dprint = _dbg.dprint
+_dprintf = _dbg.dprintf
 
 # define a catch-all case for all missing icons
 _missing_icon_xpm = ["16 16 14 1",
@@ -67,7 +67,7 @@ _missing_icon_xpm = ["16 16 14 1",
                      "c.gg#aeeeahgg###",
                      "###hhaeeea#h####",
                      "#####aeeea######",
-                     "f#.#.jaaad.cccdj"  ];
+                     "f#.#.jaaad.cccdj"  ]
                                
 
 class QPixmapWrapper(object):
@@ -75,31 +75,31 @@ class QPixmapWrapper(object):
   is actually retrieved with the pm() or iconset() method for the first time.
   This gets around the problem of not being able to create QPixmaps until a Qt
   application has been initialized.
-  """;
+  """
   def __init__(self,pm=_missing_icon_xpm):
-    """Initialize wrapper with a pixmap or with an xpm string array""";
-    self.assign(pm);
+    """Initialize wrapper with a pixmap or with an xpm string array"""
+    self.assign(pm)
   def assign (self,pm):
-    """Reassign pixmap or xpm string array to wrapper""";
+    """Reassign pixmap or xpm string array to wrapper"""
     if isinstance(pm,QPixmap):
-      self._pm = pm;
+      self._pm = pm
     else:             # assume xpm string list to be decoded on-demand 
-      self._xpmstr = pm;
-      self._pm = None;
-    self._icon = None;
+      self._xpmstr = pm
+      self._pm = None
+    self._icon = None
   def pm (self):
-    """Get QPixmap from wrapper""";
+    """Get QPixmap from wrapper"""
     if self._pm is None:
-      self._pm = QPixmap(self._xpmstr);
-    return self._pm;
+      self._pm = QPixmap(self._xpmstr)
+    return self._pm
   def icon (self):
-    """Get QIcon from wrapper""";
+    """Get QIcon from wrapper"""
     if self._icon is None:
-      self._icon = QIcon(self.pm());
-    return self._icon;
+      self._icon = QIcon(self.pm())
+    return self._icon
     
   # for compatibility with old code
-  iconset = icon;
+  iconset = icon
 
 exclaim = QPixmapWrapper([ "14 14 3 1",
           "       c None",
@@ -118,7 +118,7 @@ exclaim = QPixmapWrapper([ "14 14 3 1",
           "              ",
           "      ..      ",
           "     ....     ",
-          "      ..      " ]);
+          "      ..      " ])
           
 cancel = QPixmapWrapper(["16 16 5 1",
                          "p c #800000",
@@ -141,7 +141,7 @@ cancel = QPixmapWrapper(["16 16 5 1",
                          "    X.      o   ",
                          "    X           ",
                          "                ",
-                         "                " ]);
+                         "                " ])
                          
 
 check = QPixmapWrapper(["16 14 8 1",
@@ -166,7 +166,7 @@ check = QPixmapWrapper(["16 14 8 1",
                         "XXX @OoO@ XXXXXX",
                         "XXXX @O@ XXXXXXX",
                         "XXXXX . XXXXXXXX",
-                        "XXXXXXXXXXXXXXXX" ]);
+                        "XXXXXXXXXXXXXXXX" ])
 
 pause_normal = QPixmapWrapper(["16 16 95 2",
                        "   c None",
@@ -279,7 +279,7 @@ pause_normal = QPixmapWrapper(["16 16 95 2",
                        "   S R & r r r r r r r r &.. 5 >",
                        "     ; g W | d d d d | W 3 a >  ",
                        "       H b ~ , z z , q ) 5 >    ",
-                       "         > e X O 9 k L > >      " ]);
+                       "         > e X O 9 k L > >      " ])
 
 pause_green = QPixmapWrapper(["16 16 94 2",
                          "Qt c None",
@@ -391,7 +391,7 @@ pause_green = QPixmapWrapper(["16 16 94 2",
                          "Qt.n#m#n#o#o#o#o#o#o#o#o#n#p#q.M",
                          "QtQt#r#s#t#u#v#v#v#v#u#t#w#x.MQt",
                          "QtQtQt.F.L#y#z#A#A#z#B#l#q.MQtQt",
-                         "QtQtQtQt.M.S.Z.5###e#i.M.MQtQtQt" ]);
+                         "QtQtQtQt.M.S.Z.5###e#i.M.MQtQtQt" ])
           
 refresh = QPixmapWrapper([ "16 16 7 1",
                    "  c #000000",
@@ -416,7 +416,7 @@ refresh = QPixmapWrapper([ "16 16 7 1",
                    "XX XXXXXX    XXX",
                    "XX   XX      XXX",
                    "XXX         XXXX",
-                   "XXXXX     XXXXXX"  ]);
+                   "XXXXX     XXXXXX"  ])
 
 
 pin_up = QPixmapWrapper([ "16 16 5 1",
@@ -440,7 +440,7 @@ pin_up = QPixmapWrapper([ "16 16 5 1",
                           "                ",
                           "                ",
                           "                ",
-                          "                "]);
+                          "                "])
 
 pin_down = QPixmapWrapper([ "16 16 5 1",
                             "  c None",
@@ -463,7 +463,7 @@ pin_down = QPixmapWrapper([ "16 16 5 1",
                             "     XXXXXX     ",
                             "                ",
                             "                ",
-                            "                "]);
+                            "                "])
 
 matrix = QPixmapWrapper(["16 16 4 1",
                          "  c None",
@@ -486,7 +486,7 @@ matrix = QPixmapWrapper(["16 16 4 1",
                          ".X. X.X .X.X. X ",
                          ".XXXX.XXXX.XXXX ",
                          "                "
-                         ]);
+                         ])
 
 view_right = QPixmapWrapper(["16 16 48 1",
                              "  c None",
@@ -552,7 +552,7 @@ view_right = QPixmapWrapper(["16 16 48 1",
                              " 0k<d,q096e+e6s ",
                              " 055l4q0 w6w6ws ",
                              " @sssss +s ws + ",
-                             "           +    "]);
+                             "           +    "])
 
 view_split = QPixmapWrapper(["16 16 40 1",
                              "  c None",
@@ -643,7 +643,7 @@ remove = QPixmapWrapper(["16 16 15 1",
                          "-@#==========-@#",
                          "-@------------@#",
                          "-@@@@@@@@@@@@@@#",
-                         "################" ]);
+                         "################" ])
                              
 eventnew = QPixmapWrapper(["16 16 7 1",
                            "  c None",
@@ -668,7 +668,7 @@ eventnew = QPixmapWrapper(["16 16 7 1",
                            "    OO .O+ .O   ",
                            "   O   .O    O  ",
                            "        O       ",
-                           "                " ]);
+                           "                " ])
 
 
 view_tree = QPixmapWrapper(["16 16 5 1",
@@ -692,7 +692,7 @@ view_tree = QPixmapWrapper(["16 16 5 1",
                             "....    ........",
                             "................",
                             "................",
-                            "................"]);
+                            "................"])
 
 
 precplus = QPixmapWrapper(["16 16 3 1",
@@ -714,7 +714,7 @@ precplus = QPixmapWrapper(["16 16 3 1",
                            "........#a#####a",
                            "........#aaa#aaa",
                            "........#aaa#aaa",
-                           "........#aaaaaaa"]);
+                           "........#aaaaaaa"])
                            
 precminus = QPixmapWrapper(["16 16 3 1",
                             "# c #000000",
@@ -735,7 +735,7 @@ precminus = QPixmapWrapper(["16 16 3 1",
                             "........#a#####a",
                             "........#aaaaaaa",
                             "........#aaaaaaa",
-                            "........#aaaaaaa" ]);
+                            "........#aaaaaaa" ])
 
 
 
@@ -761,7 +761,7 @@ bars3d = QPixmapWrapper(["16 16 6 1",
                          ".#c#d#c#d###d##.",
                          ".#c#d#c#d#c#d#..",
                          ".#c#d#c#d#c##...",
-                         ".###########...." ]);
+                         ".###########...." ])
 
 areas3d = QPixmapWrapper(["16 16 6 1",
                           "# c #000000",
@@ -785,7 +785,7 @@ areas3d = QPixmapWrapper(["16 16 6 1",
                           "#dddddddd##ccc##",
                           "#dddddddddd#ccc#",
                           "#ddddddddddd#c#.",
-                          "##############.." ]);
+                          "##############.." ])
 
 treeviewoblique = QPixmapWrapper(["16 16 44 1",
                           "h c #000000",
@@ -847,7 +847,7 @@ treeviewoblique = QPixmapWrapper(["16 16 44 1",
                           "   i3-+15p*wi   ",
                           "    w6>#awi     ",
                           "    is9wi       ",
-                          "     ii         " ]);
+                          "     ii         " ])
 
 
 
@@ -1010,7 +1010,7 @@ reload_slick = QPixmapWrapper(["16 16 143 2",
                                "  .O.9 > N N N.2 N N.: j >.x s 9",
                                "   9 3 J.q.l G G G G.l.q a D 9 9",
                                "     9.* !.t 0 E E 0 v.a s 9 9  ",
-                               "      .> q ' |., l Y.; w.>.>    " ]);
+                               "      .> q ' |., l Y.; w.>.>    " ])
 
 
 publish = QPixmapWrapper(["16 16 13 1",
@@ -1042,7 +1042,7 @@ publish = QPixmapWrapper(["16 16 13 1",
                           "...#cigdbbdcca#.",
                           ".....#cigdacc#..",
                           ".......#chk##...",
-                          ".........##....."]);
+                          ".........##....."])
 
 
 publish_active = QPixmapWrapper(["16 16 13 1",
@@ -1074,7 +1074,7 @@ publish_active = QPixmapWrapper(["16 16 13 1",
                                  "...#cigdbbdcca#.",
                                  ".....#cigdacc#..",
                                  ".......#chk##...",
-                                 ".........##....."]);
+                                 ".........##....."])
 
 node_any = QPixmapWrapper(["16 16 5 1",
                            "  c None",
@@ -1097,7 +1097,7 @@ node_any = QPixmapWrapper(["16 16 5 1",
                            "      o.        ",
                            "      o.        ",
                            "       .        ",
-                           "                " ]);
+                           "                " ])
                            
 node_command = QPixmapWrapper(["16 16 7 1",
                                "  c None",
@@ -1122,7 +1122,7 @@ node_command = QPixmapWrapper(["16 16 7 1",
                                "      +o .@@.@.o",
                                "      +o ..@@..o",
                                "      +o  ....oo",
-                               "       o   oooo "]);
+                               "       o   oooo "])
                                
 node_eval = QPixmapWrapper(["16 16 7 1",
                            "  c None",
@@ -1147,7 +1147,7 @@ node_eval = QPixmapWrapper(["16 16 7 1",
                            "      +o o      ",
                            "      +o        ",
                            "       o        ",
-                           "                "]);
+                           "                "])
                            
 node_idle = QPixmapWrapper(["16 16 4 1",
                            "  c None",
@@ -1169,7 +1169,7 @@ node_idle = QPixmapWrapper(["16 16 4 1",
                            "      .X        ",
                            "      .X        ",
                            "       X        ",
-                           "                "]);
+                           "                "])
 
 node_poll = QPixmapWrapper(["16 16 7 1",
                            "  c None",
@@ -1194,7 +1194,7 @@ node_poll = QPixmapWrapper(["16 16 7 1",
                            "      +o        ",
                            "      +o        ",
                            "       o        ",
-                           "                "]);
+                           "                "])
                            
                            
 node_request = QPixmapWrapper(["16 16 7 1",
@@ -1220,7 +1220,7 @@ node_request = QPixmapWrapper(["16 16 7 1",
                            "    X...Xoo     ",
                            "    X...Xo      ",
                            "    XXXXXo      ",
-                           "     ooooo      "]);
+                           "     ooooo      "])
 
 
 ##breakpoint = QPixmapWrapper(["16 16 69 1",
@@ -1308,7 +1308,7 @@ node_request = QPixmapWrapper(["16 16 7 1",
 ##                             "  n#7y&ymmOhu   ",
 ##                             "   nq%@@@%Bu    ",
 ##                             "    DwwwwwD     ",
-##                             "                "]);
+##                             "                "])
 ##
 ##breakpoint_ss = QPixmapWrapper(["16 16 64 1",
 ##                                "  c None",
@@ -1390,7 +1390,7 @@ node_request = QPixmapWrapper(["16 16 7 1",
 ##                                "  x@4e%eccodr   ",
 ##                                "   x8$+++$nr    ",
 ##                                "    V99999V     ",
-##                                "                "]);
+##                                "                "])
 ##
 ##breakpoint_delete = QPixmapWrapper(["16 16 68 1",
 ##                                    "  c None",
@@ -1476,7 +1476,7 @@ node_request = QPixmapWrapper(["16 16 7 1",
 ##                                    "  K#6t&tnnOgK   ",
 ##                                    " K b0%@@@%Ny K  ",
 ##                                    "K   SqqqqqS   K ",
-##                                    "                "]);
+##                                    "                "])
 
 breakpoint = QPixmapWrapper(["16 16 43 1",
                              ". c None",
@@ -1537,7 +1537,7 @@ breakpoint = QPixmapWrapper(["16 16 43 1",
                              ".#MMcjjjjjcMMM#.",
                              "..#NNcccccNNN#..",
                              "...##OOOOOO##...",
-                             ".....######....."]);
+                             ".....######....."])
                              
 forward_to = QPixmapWrapper(["16 15 52 1",
                             ". c None",
@@ -1606,7 +1606,7 @@ forward_to = QPixmapWrapper(["16 15 52 1",
                             ".#OPPP#QQa.#RPP#",
                             ".#SSS#TTa..aU##a",
                             ".#VV#WWa....Xaa.",
-                            "..##.aa........."]);
+                            "..##.aa........."])
                             
 breakpoint_delete = QPixmapWrapper(["16 16 39 1",
                                     "# c None",
@@ -1663,7 +1663,7 @@ breakpoint_delete = QPixmapWrapper(["16 16 39 1",
                                     "#aI..kkkkkd..Ia#",
                                     "##..JdddddJJ..##",
                                     "#..aaKKKKKKaa..#",
-                                    "..###aaaaaa###.."]);
+                                    "..###aaaaaa###.."])
                             
 right_triangle = QPixmapWrapper([
                                  "16 15 26 1",
@@ -1707,7 +1707,7 @@ right_triangle = QPixmapWrapper([
                                  "....#uvvv#......",
                                  "....#www#.......",
                                  "....#xx#........",
-                                 ".....##........."]);
+                                 ".....##........."])
 
 right_2triangles = QPixmapWrapper([
                                    "16 15 21 1",
@@ -1746,7 +1746,7 @@ right_2triangles = QPixmapWrapper([
                                    ".#qrr#..#qrr#...",
                                    ".#ss#...#ss#....",
                                    "..##.....##.....",
-                                   "................"]);
+                                   "................"])
 
 down_triangle = QPixmapWrapper([
                                 "15 16 17 1",
@@ -1782,7 +1782,7 @@ down_triangle = QPixmapWrapper([
                                 "......###......",
                                 "...............",
                                 "...............",
-                                "..............."]);
+                                "..............."])
 
 down_2triangles = QPixmapWrapper([
                                   "15 16 15 1",
@@ -1816,7 +1816,7 @@ down_2triangles = QPixmapWrapper([
                                   "...#kkkkkkk#...",
                                   "....#lllll#....",
                                   ".....#mmm#.....",
-                                  "......###......"]);
+                                  "......###......"])
 
 
 pause = QPixmapWrapper([
@@ -1855,7 +1855,7 @@ pause = QPixmapWrapper([
                         "..#pqq#.#pqq#..",
                         "...r##...r##...",
                         "...............",
-                        "..............."]);
+                        "..............."])
 
 stop = QPixmapWrapper(["16 16 132 2",
                         "Qt c None",
@@ -2005,7 +2005,7 @@ stop = QPixmapWrapper(["16 16 132 2",
                         "Qt.##Y#Z#0#1#2#3#4#4#5#6#5#Y.#Qt",
                         "QtQt.##7#8#9a.a#a#a##8aa#7.#QtQt",
                         "QtQtQt.#.#abababababab.#.#QtQtQt",
-                        "QtQtQtQtQt.#.#.#.#.#.#QtQtQtQtQt"]);
+                        "QtQtQtQtQt.#.#.#.#.#.#QtQtQtQtQt"])
 
 roadsign_nolimit = QPixmapWrapper(["16 16 4 1",
                        "b c None",
@@ -2027,7 +2027,7 @@ roadsign_nolimit = QPixmapWrapper(["16 16 4 1",
                        ".###a#aaaaaa###.",
                        "..###baaaa####..",
                        "...##########...",
-                       ".....######....."]);
+                       ".....######....."])
 
 eject = QPixmapWrapper(["15 16 25 1",
                         ". c None",
@@ -2070,7 +2070,7 @@ eject = QPixmapWrapper(["15 16 25 1",
                         "#gijklmnoppppp#",
                         "#qrsssssssssss#",
                         "#tuvvvvvvvvvvv#",
-                        ".w############." ]);
+                        ".w############." ])
                         
 
 file_open = QPixmapWrapper(["16 16 223 2",
@@ -2312,7 +2312,7 @@ file_open = QPixmapWrapper(["16 16 223 2",
                               "aJaKaLaMaNaOaPaQaRaSaTaUaVaWaXaY",
                               "aZa0a1.9a1a2a3a4a5a6a7a8a9b.b#ba",
                               "bbbc.9.9.9.9bdbebfbgbhbibjbkblbm",
-                              "bnbobpbqbrbsbtbubvbwbxbybzbAbBbC"]);
+                              "bnbobpbqbrbsbtbubvbwbxbybzbAbBbC"])
 
 file_save = QPixmapWrapper(["16 16 179 2",
                          "Qt c None",
@@ -2509,7 +2509,7 @@ file_save = QPixmapWrapper(["16 16 179 2",
                          "QtaiajakalamanaoapaqarasatauavQt",
                          "QtawaxayazaAaBaCaDaEaFaGaHaIaJQt",
                          "QtaKaLaMaNaOaPaQaRaSaTaTaUaVaWQt",
-                         "QtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQt"]);
+                         "QtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQt"])
 
 reexecute = QPixmapWrapper(["16 16 23 1",
                             "b c None",
@@ -2550,7 +2550,7 @@ reexecute = QPixmapWrapper(["16 16 23 1",
                             "..cuc..........a",
                             "...ccc..........",
                             ".....ccc........",
-                            "................" ]);
+                            "................" ])
                             
 reexecute_loop = QPixmapWrapper(["16 16 24 1",
                                  "v c None",
@@ -2592,7 +2592,7 @@ reexecute_loop = QPixmapWrapper(["16 16 24 1",
                                  "..cuc.....vccv.a",
                                  "...ccc...cccv...",
                                  ".....cccccvv....",
-                                 "................"]);
+                                 "................"])
                                  
 spigot = QPixmapWrapper(["16 16 177 2",
                            ".i c None",
@@ -2787,7 +2787,7 @@ spigot = QPixmapWrapper(["16 16 177 2",
                            "Qt.i.iasatauavawax.iayazaAaBaC.i",
                            "Qt.i.i.i.taDaE.Q.iaFaGaHaIaJaK.i",
                            "Qt.i.i.i.i.i.i.i.iaLaMaNaOaPaQ.i",
-                           "Qt.i.i.i.i.i.i.i.i.i.iaRaSaTaU.i"]);
+                           "Qt.i.i.i.i.i.i.i.i.i.iaRaSaTaU.i"])
 
 grey_cross = QPixmapWrapper(["16 16 97 2",
                                      "Qt c None",
@@ -2902,7 +2902,7 @@ grey_cross = QPixmapWrapper(["16 16 97 2",
                                      ".i#v#w.U.V.8#a.v.W#k#n#p#o.5#u#x",
                                      ".k#y.q.V.u.v#b#e.H#l#o#t#z.4.F.I",
                                      ".l.x.H.W.2.2#c.H#h#l#p#A#z#B#C#D",
-                                     "Qt.l.I.X.3.9#d#f#i#m#q.z#E.I#DQt"]);
+                                     "Qt.l.I.X.3.9#d#f#i#m#q.z#E.I#DQt"])
 
 
 # Acknowledgement: the following open_lock and close_lock xpm files are 
@@ -2957,7 +2957,7 @@ open_lock = QPixmapWrapper(["24 24 24 1",
                             "    *++++++++++++++*    ",
                             "     **************     ",
                             "                        ",
-                            "                        "]);
+                            "                        "])
                              
 close_lock = QPixmapWrapper(["24 24 24 1",
                              " 	c None",
@@ -3007,52 +3007,52 @@ close_lock = QPixmapWrapper(["24 24 24 1",
                              "    *++++++++++++++*    ",
                              "     **************     ",
                              "                        ",
-                             "                        "]);
+                             "                        "])
 
 import os
 import os.path
 
-__icons_loaded = False;
+__icons_loaded = False
 
 def load_icons (appname, package=""):
   """
   load all icons found in path, subdirs '<package>/icons/<appname>'.
   Package is optional.
-  """;
+  """
   # loop over system path
-  global __icons_loaded;
+  global __icons_loaded
   if __icons_loaded:
-    return;
+    return
   icon_paths = ['/usr/local/share/meqtrees'] + sys.path
   for path in icon_paths:
-    path = path or '.';
+    path = path or '.'
     # for each entry, try <entry>/icons/<appname>'
-    trydir = os.path.join(path,package,'icons',appname);
-    _dprint(3,'trying icon path',trydir);
-    try: files = os.listdir(trydir);
-    except: continue;
-    _dprint(3,len(files),'entries in',trydir);
+    trydir = os.path.join(path,package,'icons',appname)
+    _dprint(3,'trying icon path',trydir)
+    try: files = os.listdir(trydir)
+    except: continue
+    _dprint(3,len(files),'entries in',trydir)
     # loop over all files
-    nicons = 0;
+    nicons = 0
     for f in files:
       (name,ext) = os.path.splitext(f);     # check extension
       if ext in ('.png','.xpm','.gif'):
-        f = os.path.join(trydir,f);
-        try: pm = QPixmap(f);
+        f = os.path.join(trydir,f)
+        try: pm = QPixmap(f)
         except: 
-          _dprint(3,'error loading icon',name,sys.exc_value());
-          continue;
+          _dprint(3,'error loading icon',name,sys.exc_value())
+          continue
         # register pixmap as global symbol using the supplied name
         if name in globals():
-          globals()[name].assign(pm);
+          globals()[name].assign(pm)
         else:
-          globals()[name] = QPixmapWrapper(pm);
-        nicons += 1;
-        _dprint(4,'loaded icon',f);
+          globals()[name] = QPixmapWrapper(pm)
+        nicons += 1
+        _dprint(4,'loaded icon',f)
       else:
-        _dprint(4,'ignoring entry',f);
-    _dprint(1,nicons,'icons loaded from ',trydir);
-    __icons_loaded = True;
+        _dprint(4,'ignoring entry',f)
+    _dprint(1,nicons,'icons loaded from ',trydir)
+    __icons_loaded = True
 
 # define a pixmap access hook
 # if name is undefined, it will be inserted into globals 
@@ -3060,63 +3060,63 @@ def load_icons (appname, package=""):
 # later by load_icons() above. This allows apps to refer to icons before they're loaded.
 class __PixmapHook(object):
   def __getattr__ (self,name):
-    _dprint(4,'returning icon',name);
-    return globals().setdefault(name,QPixmapWrapper());
+    _dprint(4,'returning icon',name)
+    return globals().setdefault(name,QPixmapWrapper())
 
-pixmaps = __PixmapHook();
+pixmaps = __PixmapHook()
 
 # define a Pixmap cache
 class PixmapCache (object):
   def __init__ (self,appname):
-    self._appname = appname;
-    self._loaded = None;
-    self._pixmaps = {};
-    self._pixmaps['_default'] = QPixmapWrapper();
+    self._appname = appname
+    self._loaded = None
+    self._pixmaps = {}
+    self._pixmaps['_default'] = QPixmapWrapper()
     
   def __getattr__(self,name):
     # try to access attribute anyway, to see if we have one
-    try: return dict.__getattr__(self,name);
-    except AttributeError: pass;
+    try: return dict.__getattr__(self,name)
+    except AttributeError: pass
     # try to load pixmaps
-    self._load();
+    self._load()
     # try to access pixmap
-    pm = self._pixmaps.get(name,None);
+    pm = self._pixmaps.get(name,None)
     if pm:
-      return pm;
+      return pm
     else:
-      return QPixmapWrapper();
+      return QPixmapWrapper()
     
   def _load (self):
-    """load all icons found in path, subdirs 'icons/appname'""";
+    """load all icons found in path, subdirs 'icons/appname'"""
     # loop over system path
     if self._loaded:
-      return;
+      return
     icon_paths = ['/usr/local/share/meqtrees'] + sys.path
     for path in icon_paths:
-      path = path or '.';
+      path = path or '.'
       # for each entry, try <entry>/icons/<appname>'
       for a,b in [('icons',self._appname), (self._appname, 'icons')]:
-        trydir = os.path.join(path, a, b);
-        _dprint(3,'trying icon path',trydir);
-        try: files = os.listdir(trydir);
-        except: continue;
-        _dprint(3,len(files),'entries in',trydir);
+        trydir = os.path.join(path, a, b)
+        _dprint(3,'trying icon path',trydir)
+        try: files = os.listdir(trydir)
+        except: continue
+        _dprint(3,len(files),'entries in',trydir)
         # loop over all files
-        nicons = 0;
+        nicons = 0
         for f in files:
           (name,ext) = os.path.splitext(f);     # check extension
           if ext in ('.png','.xpm','.gif'):
-            f = os.path.join(trydir,f);
-            try: pm = QPixmap(f);
+            f = os.path.join(trydir,f)
+            try: pm = QPixmap(f)
             except: 
-              _dprint(3,'error loading icon',name,sys.exc_value());
-              continue;
+              _dprint(3,'error loading icon',name,sys.exc_value())
+              continue
             # register pixmap 
-            self._pixmaps[name] = QPixmapWrapper(pm);
-            nicons += 1;
-            _dprint(4,'loaded icon',f);
+            self._pixmaps[name] = QPixmapWrapper(pm)
+            nicons += 1
+            _dprint(4,'loaded icon',f)
           else:
-            _dprint(4,'ignoring entry',f);
-        _dprint(1,nicons,'icons loaded from ',trydir);
-        self._loaded = True;
+            _dprint(4,'ignoring entry',f)
+        _dprint(1,nicons,'icons loaded from ',trydir)
+        self._loaded = True
 
