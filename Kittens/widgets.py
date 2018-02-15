@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from PyQt4.Qt import *
+from PyQt5.Qt import *
+
 
 def PYSIGNAL (sig):
   """PyQt4 no longer supports PYSIGNAL(). Instead, everything goes through SIGNAL(). "Proper" user-defined
@@ -17,6 +18,7 @@ def PYSIGNAL (sig):
     return SIGNAL(sig[:-2])
   else:
     return SIGNAL(sig)
+
 
 class BusyIndicator (object):
   """A BusyIndicator object is created to set the cursor to a hourglass.
