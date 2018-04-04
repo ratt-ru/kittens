@@ -91,7 +91,8 @@ class recdict(dict):
 
 
 def collapseuser(path):
-    """If path begins with the home directory, replaces the start of the path with "~/". Essentially the reverse of os.path.expanduser()"""
+    """If path begins with the home directory, replaces the start of the path with "~/". Essentially
+    the reverse of os.path.expanduser()"""
     home = os.path.join(os.path.expanduser("~"), "")
     if path.startswith(home):
         path = os.path.join("~", path[len(home):])
