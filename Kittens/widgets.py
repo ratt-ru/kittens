@@ -92,7 +92,7 @@ class ClickableTreeWidget(QTreeWidget):
         def __iter__(self):
             return self
 
-        def next(self):
+        def __next__(self):
             while True:
                 value = self.value()
                 self.__iadd__(1)
