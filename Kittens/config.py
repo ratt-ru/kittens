@@ -28,7 +28,7 @@
 
 import os
 import sys
-from configparser import *
+from configparser import ConfigParser
 
 import os.path
 

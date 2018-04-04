@@ -45,7 +45,7 @@ def import_pyfits():
     pyfits-2.3, which is actually arrogant enough to replace the standard
     warnings.formatwarning function with its own BROKEN version, thus breaking
     all other code that uses the warnings module."""
-    import pyfits
+    from astropy.io import fits as pyfits
     import warnings
     if getattr(pyfits, 'formatwarning', None) is warnings.formatwarning:
         def why_is_pyfits_overriding_warnings_formatwarning_with_a_broken_one_damn_you_pyfits(message, category,
