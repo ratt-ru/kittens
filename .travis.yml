@@ -1,11 +1,10 @@
+sudo: required
 language: python
-sudo: false
-python:
-- '2.7'
-install:
-- python setup.py install
+services:
+  - docker
 script:
-- true
+    - docker build -t ska-sa/kittens .
+
 deploy:
   provider: pypi
   user: gijzelaerr
