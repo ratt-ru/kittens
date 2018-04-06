@@ -11,4 +11,6 @@ setup(name='astro-kittens',
       author_email='Oleg Smirnov <osmirnov@gmail.com>',
       url='https://github.com/ska-sa/kittens',
       packages=find_packages(),
+      install_requires=['configparser'],
      )
+
