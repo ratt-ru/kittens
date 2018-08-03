@@ -258,13 +258,13 @@ class verbosity:
             return "%s%s: " % (self.timestamp(), self.get_verbosity_name())
 
     def dprint(self, level, *args):
-        if level <= self.verbose:
+        if self.verbose and level <= self.verbose:
             stream = self.stream or sys.stderr
             stream.write(self.dheader(-3))
-            stream.write(string.join(list(map(str, args)), ' ') + '\n')
+            stream.write(' '.join(list(map(str, args))) + '\n')
 
     def dprintf(self, level, format, *args):
-        if level <= self.verbose:
+        if self.verbose and level <= self.verbose:
             stream = self.stream or sys.stderr
             try:
                 s = format % args
