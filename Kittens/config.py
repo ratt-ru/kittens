@@ -79,7 +79,7 @@ class DualConfigParser(object):
                 if init or save:
                     self.usercp.set(section, option, str(default))
                     if save:
-                        self.usercp.write(file(self._user_file, "w"))
+                        self.usercp.write(open(self._user_file, "w"))
                 return default
             # no default, so re-raise the error
             raise error
@@ -99,7 +99,7 @@ class DualConfigParser(object):
             pass
         self.usercp.set(section, option, value)
         if save:
-            self.usercp.write(file(self._user_file, "w"))
+            self.usercp.write(open(self._user_file, "w"))
 
     def has_option(self, section, option):
         return self.syscp.has_option(section, option) or \
