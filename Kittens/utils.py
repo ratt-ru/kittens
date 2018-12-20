@@ -27,7 +27,6 @@
 #
 
 import os
-import string
 import sys
 import traceback
 import weakref
@@ -36,8 +35,13 @@ import os.path
 import re
 import time
 import types
+from astropy.io import fits
 
 _time0 = time.time()
+
+
+def import_pyfits():
+    return fits
 
 
 class recdict(dict):
