@@ -1,0 +1,9 @@
+FROM kernsuite/base:4
+RUN docker-apt-install \
+    python-pip \
+    python-pytest \
+    python-astropy
+ADD . /code
+RUN pip install /code
+WORKDIR /code
+RUN pytest tests
