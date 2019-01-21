@@ -2,7 +2,8 @@ FROM kernsuite/base:4
 RUN docker-apt-install \
     python3-pip \
     python3-pytest \
-    python3-astropy
+    python3-astropy \
+    libboost-all-dev
 
 RUN docker-apt-install \
     wget
