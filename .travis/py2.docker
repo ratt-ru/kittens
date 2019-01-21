@@ -6,7 +6,9 @@ RUN docker-apt-install \
     libboost-all-dev
 
 RUN docker-apt-install \
-    wget
+    wget \
+    makems \
+    meqtrees-timba
 
 ADD . /code
 RUN pip install /code
