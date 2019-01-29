@@ -74,7 +74,7 @@ class DualConfigParser(object):
         try:
             return getattr(self.syscp, method)(section, option)
         except (NoSectionError, NoOptionError, ValueError):
-            if default is not None:
+            if default is not None and option is not None:
                 self.syscp.set(section, option, str(default))
                 if init or save:
                     self.usercp.set(section, option, str(default))
