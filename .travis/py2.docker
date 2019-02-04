@@ -11,7 +11,9 @@ RUN docker-apt-install \
     meqtrees-timba \
     libboost-python-dev \
     python-casacore \
-    meqtrees-cattery
+    owlcat \
+    python-astro-tigger \
+    python-meqtrees-cattery
 
 ADD . /code
 RUN pip install /code
