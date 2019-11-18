@@ -3,3 +3,4 @@ CHANGELOG.rst
 MANIFEST
 astro_kittens.egg-info/
 dist/
+*.pyc

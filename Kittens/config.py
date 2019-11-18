@@ -67,6 +67,9 @@ class DualConfigParser(object):
         section = section or self.defsection
         # try user defaults
         try:
+            if option is None:
+                option = section
+                section = self.usercp.sections()[0]
             return getattr(self.usercp, method)(section, option)
         except (NoSectionError, NoOptionError, ValueError):
             error = sys.exc_info()[1]
@@ -75,6 +78,9 @@ class DualConfigParser(object):
             return getattr(self.syscp, method)(section, option)
         except (NoSectionError, NoOptionError, ValueError):
             if default is not None:
+                if option is None:
+                    option = section
+                    section = self.usercp.sections()[0]
                 self.syscp.set(section, option, str(default))
                 if init or save:
                     self.usercp.set(section, option, str(default))
