@@ -210,6 +210,8 @@ class verbosity:
     def __init__(self, verbose=0, stream=None, name=None, tb=2):
         if not __debug__:
             verbose = 0
+        if verbose is None:
+            verbose = 0
         (self.verbose, self.stream, self._tb) = (verbose, stream, tb)
         # setup name
         if name:
