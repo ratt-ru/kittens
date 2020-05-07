@@ -112,7 +112,7 @@ class DualConfigParser(object):
                self.usercp.has_option(section, option)
 
     def get(self, section, option, default=None):
-        return self._get('get', option, default, section)
+        return self._get('get', section, option, default)
 
 
 class SectionParser(object):
