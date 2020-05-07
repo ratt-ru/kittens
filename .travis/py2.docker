@@ -21,9 +21,9 @@ WORKDIR /code
 RUN pytest tests
 
 # get the test from pyxis
-RUN wget https://github.com/ska-sa/pyxis/archive/v1.6.2.tar.gz
-RUN tar -xvf v1.6.2.tar.gz
-WORKDIR /code/pyxis-1.6.2
+RUN wget https://github.com/ska-sa/pyxis/archive/v1.7.0.tar.gz
+RUN tar -xvf v1.7.0.tar.gz
+WORKDIR /code/pyxis-1.7.0
 RUN pip install .
 
 # run test when built
