@@ -24,10 +24,12 @@
 # or write to the Free Software Foundation, Inc.,
 # 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
-from PyQt4.Qt import SIGNAL, QPixmap, QIcon
-
-PYSIGNAL = SIGNAL
+try:
+    from PyQt4.Qt import SIGNAL, QPixmap, QIcon
+except ImportError:
+    class QPixmap:
+        def __init__(self, *args, **kwargs):
+            pass
 
 from .utils import verbosity
 
